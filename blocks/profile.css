@@ -1,0 +1,146 @@
+.profile {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.profile__info {
+  display: grid;
+  grid-template-areas:
+    "title button"
+    "description description";
+  grid-template-columns: minmax(auto, 373px) auto;
+}
+
+.profile__edit-button {
+  background: transparent url(../images/Edit-Button.svg) center no-repeat;
+  height: 24px;
+  width: 24px;
+  grid-area: button;
+  border: solid 1px #fff;
+  cursor: pointer;
+  margin-left: 18px;
+}
+
+.profile__add-button {
+  background: transparent url(../images/AddButton.svg) center no-repeat;
+  width: 150px;
+  height: 50px;
+  margin-left: auto;
+  border: solid 2px #fff;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.profile__title {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 500;
+  grid-area: title;
+  margin: 0;
+  margin-right: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile__description {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  grid-area: description;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.profile__image {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-position: center;
+  margin-right: 24px;
+}
+
+.profile__edit-button:hover,
+.profile__add-button:hover {
+  opacity: 60%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 765px) {
+  .profile__image {
+    margin-right: 15px;
+  }
+
+  .profile__info {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .profile__title {
+    font-size: 36px;
+    max-width: 300px;
+  }
+
+  .profile__description {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 300px;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
+
+  .profile__add-button {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .profile {
+    padding-top: 42px;
+    flex-direction: column;
+  }
+
+  .profile__image {
+    margin: 0;
+  }
+
+  .profile__info {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .profile__title {
+    margin: 0;
+    font-size: 22px;
+    max-width: 196px;
+    line-height: 1.2;
+  }
+
+  .profile__description {
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 14px 0 36px;
+    max-width: 100%;
+  }
+
+  .profile__add-button {
+    width: 282px;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
+}

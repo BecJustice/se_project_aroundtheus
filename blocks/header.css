@@ -1,0 +1,8 @@
+.header {
+  margin-top: 45px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+.header__logo {
+  margin-bottom: 40px;
+}
