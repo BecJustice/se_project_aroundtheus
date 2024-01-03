@@ -3,7 +3,15 @@
 ### Overview
 
 - Intro
-- Figma
+
+  Adaptive web design project which features a responsive design which shows how my website looks on a desktop, tablet, and mobile device.
+
+- Technologies
+
+HTML 5, flat bem structure, css grid and flexbox use, and github deployment.
+
+Figma
+
 - Images
 
 **Intro**
@@ -14,8 +22,6 @@ This project is made so all the elements are displayed correctly on popular scre
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
-**Images**
+Git Hub Link https://becjustice.github.io/se_project_aroundtheus/
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
-
-
+Link to a video of my project https://www.loom.com/share/2de48dc8c66a454f9f9fcba21eeed0e2

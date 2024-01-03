@@ -41,6 +41,7 @@
   margin-right: 18px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__description {
@@ -63,7 +64,11 @@
   margin-right: 24px;
 }
 
-.profile__edit-button:hover,
+.profile__edit-button:hover {
+  opacity: 60%;
+  cursor: pointer;
+}
+
 .profile__add-button:hover {
   opacity: 60%;
   cursor: pointer;
@@ -87,9 +92,6 @@
 
   .profile__description {
     width: 100%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     max-width: 300px;
   }
 
