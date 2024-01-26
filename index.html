@@ -43,6 +43,11 @@
         </section>
         <section class="cards page__section">
           <ul class="cards__list"></ul>
+          <button
+            class="cards__trash-button"
+            type="button"
+            aria-label="remove card"
+          ></button>
         </section>
       </main>
       <footer class="footer page__section">
@@ -72,6 +77,34 @@
             name="description"
             id="profile-description-input"
             placeholder="Description"
+          />
+          <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="profile-add-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          type="button"
+          id="add-modal-close-button"
+        ></button>
+        <h2 class="modal__heading">New Place</h2>
+        <form class="modal__form" id="add-card-modal">
+          <input
+            class="modal__form-input"
+            type="text"
+            name="title"
+            id="modal-add-card-input"
+            placeholder="Title"
+          />
+          <input
+            class="modal__form-input"
+            type="text"
+            name="URL"
+            id="modal-form-url-input"
+            placeholder="Image URL"
           />
           <button class="modal__button" type="submit">Save</button>
         </form>
