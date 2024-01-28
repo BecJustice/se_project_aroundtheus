@@ -7,13 +7,18 @@
   background-color: rgba(0, 0, 0, 0.5);
   padding: 19px;
   z-index: 999;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 .modal_opened {
   display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {
@@ -23,6 +28,23 @@
   position: relative;
   width: 430px;
   height: 330px;
+}
+
+.modal__image-container {
+  position: relative;
+  margin: auto;
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.modal__image-title {
+  font-weight: 400;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 .modal__close {
@@ -36,6 +58,12 @@
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
+  cursor: pointer;
+  transition: opacity 0.5s linear;
+}
+
+.modal__close:hover {
+  opacity: 60%;
   cursor: pointer;
 }
 

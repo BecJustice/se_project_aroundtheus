@@ -10,17 +10,3 @@
   padding: 0;
   margin: 0;
 }
-
-.cards__trash-button {
-  background: transparent url(../images/Trash.svg) center no-repeat;
-  transition: opacity 0.3s linear;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  width: 18px;
-  height: 19.3px;
-  position: absolute;
-  top: 18px;
-  right: 15px;
-  cursor: pointer;
-}

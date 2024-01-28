@@ -43,18 +43,13 @@
         </section>
         <section class="cards page__section">
           <ul class="cards__list"></ul>
-          <button
-            class="cards__trash-button"
-            type="button"
-            aria-label="remove card"
-          ></button>
         </section>
       </main>
       <footer class="footer page__section">
         <p class="footer__copyright">© 2023 Around the U.S.</p>
       </footer>
     </div>
-
+    <!--Profile Edit Modal-->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button
@@ -82,7 +77,7 @@
         </form>
       </div>
     </div>
-
+    <!--Add Card Modal-->
     <div class="modal" id="profile-add-modal">
       <div class="modal__container">
         <button
@@ -110,9 +105,26 @@
         </form>
       </div>
     </div>
+    <!--Preview Image Modal-->
+    <div class="modal" id="preview__image-modal">
+      <div class="modal__image-container">
+        <button
+          class="modal__close"
+          id="image-close-modal"
+          type="button"
+        ></button>
+        <img class="modal__image" id="modal-image" src="#" alt="" />
+        <h2 class="modal__image-title"></h2>
+      </div>
+    </div>
 
     <template id="card-template">
       <li class="card">
+        <button
+          class="card__trash-button"
+          type="button"
+          id="card__remove-button"
+        ></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>
