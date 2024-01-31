@@ -68,10 +68,15 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-button");
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardImageEl.addEventListener("click", () => handlePreviewPicture(cardData));
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
 
   const cardRemoveButton = cardElement.querySelector("#card__remove-button");
   cardRemoveButton.addEventListener("click", () => {
@@ -84,6 +89,7 @@ function getCardElement(cardData) {
 function handlePreviewPicture(data) {
   previewImage.src = data.link;
   previewImageTitle.textContent = data.name;
+  previewImageModal.setAttribute("alt", data.name);
   openPopUp(previewImageModal);
 }
 
@@ -96,12 +102,6 @@ function handleProfileEditSubmit(e) {
   closePopup(profileEditModal);
 }
 
-function renderCard(cardData) {
-  const card = newCard(cardData, "#card-template");
-  const cardElement = card.getView();
-  cardListEl.prepend(cardElement);
-}
-
 function handleAddCardFormSubmit(e) {
   e.preventDefault();
   const name = cardTitleInput.value;
@@ -111,6 +111,7 @@ function handleAddCardFormSubmit(e) {
     link,
   });
   cardListEl.prepend(cardElement);
+  addCardFormElement.reset();
   closePopup(addCardModal);
 }
 
@@ -119,7 +120,7 @@ function handleAddCardFormSubmit(e) {
 profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
+  openPopUp(profileEditModal);
 });
 
 addNewCardButton.addEventListener("click", () => {
@@ -144,11 +145,4 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardListEl.append(cardElement);
-});
-
-const likeButtons = document.querySelectorAll(".card__like-button");
-likeButtons.forEach((likeButton) => {
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
 });
