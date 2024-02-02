@@ -89,7 +89,7 @@ function getCardElement(cardData) {
 function handlePreviewPicture(data) {
   previewImage.src = data.link;
   previewImageTitle.textContent = data.name;
-  previewImageModal.setAttribute("alt", data.name);
+  previewImage.setAttribute("alt", data.name);
   openPopUp(previewImageModal);
 }
 
