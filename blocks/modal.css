@@ -112,6 +112,15 @@
   opacity: 80%;
 }
 
+.modal__error_visible {
+  width: 358px;
+  height: 44px;
+  top: 408px;
+  left: 107px;
+  border: 1px;
+  color: red;
+}
+
 @media screen and (max-width: 635px) {
   .modal__container {
     height: 322px;
