@@ -58,10 +58,27 @@ const previewImage = document.querySelector("#modal-image");
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalbyEscape);
+  modal.removeEventListener("mousedown", closeModalOutsideClick);
 }
 
 function openPopUp(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalbyEscape);
+  modal.addEventListener("mousedown", closeModalOutsideClick);
+}
+
+function closeModalbyEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closePopup(openedModal);
+  }
+}
+
+function closeModalOutsideClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.currentTarget);
+  }
 }
 
 function getCardElement(cardData) {

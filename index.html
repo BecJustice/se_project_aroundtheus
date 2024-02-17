@@ -84,7 +84,11 @@
             class="modal__error"
             id="profile-description-input-error"
           ></span>
-          <button class="modal__button modal__button_disabled" type="submit">
+          <button
+            class="modal__button modal__button_disabled"
+            type="submit"
+            disabled
+          >
             Save
           </button>
         </form>
@@ -113,14 +117,20 @@
           />
           <input
             class="modal__form-input"
-            type="text"
-            name="URL"
+            type="url"
+            name="url"
             id="modal-form-url-input"
             placeholder="Image URL"
             required
           />
           <span class="modal__error" id="modal-url-input-error"></span>
-          <button class="modal__button" type="submit">Save</button>
+          <button
+            class="modal__button modal__button_disabled"
+            type="submit"
+            disabled
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>

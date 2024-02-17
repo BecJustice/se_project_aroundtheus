@@ -91,6 +91,12 @@
   padding: 0;
 }
 
+.modal__form-input:invalid {
+  border: none;
+  border-bottom: 1px solid red;
+  margin: 0;
+}
+
 .modal__form-input:last-of-type {
   margin-bottom: 0;
 }
@@ -110,6 +116,15 @@
 
 .modal__button:hover {
   opacity: 80%;
+}
+
+.modal__button_disabled {
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 1);
+  color: rgba(0, 0, 0, 1);
+  opacity: 20%;
 }
 
 .modal__error_visible {
