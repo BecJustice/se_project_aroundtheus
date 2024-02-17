@@ -134,6 +134,7 @@
   left: 107px;
   border: 1px;
   color: red;
+  opacity: 1;
 }
 
 @media screen and (max-width: 635px) {
