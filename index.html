@@ -104,26 +104,26 @@
         ></button>
         <h2 class="modal__heading">New Place</h2>
         <form class="modal__form" id="add-card-modal">
-          <span class="modal__error" id="modal-title-input-error"></span>
           <input
             class="modal__form-input"
             type="text"
             name="title"
-            id="modal-add-card-input"
+            id="name"
             placeholder="Title"
-            minlength="1"
+            minlength="2"
             maxlength="30"
             required
           />
+          <span class="modal__error" id="name-error"></span>
           <input
             class="modal__form-input"
             type="url"
             name="url"
-            id="modal-form-url-input"
+            id="url"
             placeholder="Image URL"
             required
           />
-          <span class="modal__error" id="modal-url-input-error"></span>
+          <span class="modal__error" id="url-error"></span>
           <button
             class="modal__button modal__button_disabled"
             type="submit"
