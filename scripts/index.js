@@ -121,6 +121,8 @@ function handleProfileEditSubmit(e) {
 
 function handleAddCardFormSubmit(e) {
   e.preventDefault();
+  const cardTitleInput = addCardFormElement.querySelector("#name");
+  const cardUrlInput = addCardFormElement.querySelector("#url");
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   const cardElement = getCardElement({

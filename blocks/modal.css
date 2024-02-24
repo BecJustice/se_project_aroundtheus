@@ -146,6 +146,11 @@
     height: 27px;
   }
 
+  .modal__form {
+    width: 100%;
+    margin: 0;
+  }
+
   .modal__button {
     height: 46px;
   }
