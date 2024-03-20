@@ -172,6 +172,13 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#card-template");
+  const card = new Card(cardData, "#card-template", handleImageClick);
   cardListEl.append(card.getView());
 });
+
+function handleImageClick(cardData) {
+  openPopUp(previewImageModal);
+  previewImage.src = data.link;
+  previewImageTitle.textContent = data.name;
+  previewImage.setAttribute("alt", data.name);
+}
