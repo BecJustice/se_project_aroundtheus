@@ -1,47 +1,47 @@
-function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
+/*function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.add(inputErrorClass);
   errorMessageEl.textContent = inputEl.validationMessage;
   errorMessageEl.classList.add(errorClass);
-}
+} */
 
-function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
+/*function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.remove(inputErrorClass);
   errorMessageEl.textContent = "";
   errorMessageEl.classList.remove(errorClass);
-}
+} */
 
-function checkInputValidity(formEl, inputEl, options) {
+/*function checkInputValidity(formEl, inputEl, options) {
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, options);
   } else {
     hideInputError(formEl, inputEl, options);
   }
-}
+} */
 
-function hasInvalidInput(inputList) {
+/*function hasInvalidInput(inputList) {
   return !inputList.every((inputEl) => inputEl.validity.valid);
-}
+} */
 
-function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
+/*function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
   let foundInvalid = false;
   inputEls.forEach((inputEl) => {
     if (!inputEl.validity.valid) {
       foundInvalid = true;
     }
-  });
+  }); */
 
-  if (foundInvalid) {
+/*if (foundInvalid) {
     submitButton.classList.add(inactiveButtonClass);
     submitButton.disabled = true;
   } else {
     submitButton.classList.remove(inactiveButtonClass);
     submitButton.disabled = false;
   }
-}
+} */
 
-function setEventListeners(formEl, options) {
+/*function setEventListeners(formEl, options) {
   const { inputSelector } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
   const submitButton = formEl.querySelector(options.submitButtonSelector);
@@ -51,7 +51,7 @@ function setEventListeners(formEl, options) {
       toggleButtonState(inputEls, submitButton, options);
     });
   });
-}
+} */
 
 function enableValidation(options) {
   const formEls = [...document.querySelectorAll(options.formSelector)];

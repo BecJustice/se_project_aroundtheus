@@ -1,3 +1,4 @@
+import FormValidator from "../components/FormValidator.js";
 import Card from "../components/card.js";
 
 const initialCards = [
@@ -36,6 +37,22 @@ const cardData = {
 
 const card = new Card(cardData, "#card-template");
 card.getView();
+
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__form-input_error",
+  errorClass: "modal__error_visible",
+};
+//new
+const forms = document.querySelectorAll(config.formSelector);
+//new
+forms.forEach((form) => {
+  const formValidator = new FormValidator(config, form);
+  formValidator.enableValidation();
+});
 
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -99,7 +116,7 @@ function getCardElement(cardData) {
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
-  cardImageEl.addEventListener("click", () => handlePreviewPicture(cardData));
+  //cardImageEl.addEventListener("click", () => handlePreviewPicture(cardData));
 
   /*likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
@@ -113,12 +130,12 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-function handlePreviewPicture(data) {
+/*function handlePreviewPicture(data) {
   previewImage.src = data.link;
   previewImageTitle.textContent = data.name;
   previewImage.setAttribute("alt", data.name);
   openPopUp(previewImageModal);
-}
+} */
 
 /*Event Handlers*/
 
@@ -178,7 +195,7 @@ initialCards.forEach((cardData) => {
 
 function handleImageClick(cardData) {
   openPopUp(previewImageModal);
-  previewImage.src = data.link;
-  previewImageTitle.textContent = data.name;
-  previewImage.setAttribute("alt", data.name);
+  previewImage.src = cardData.link;
+  previewImageTitle.textContent = cardData.name;
+  previewImage.setAttribute("alt", cardData.name);
 }
