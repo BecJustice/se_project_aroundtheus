@@ -53,7 +53,7 @@
   });
 } */
 
-function enableValidation(options) {
+/*function enableValidation(options) {
   const formEls = [...document.querySelectorAll(options.formSelector)];
   formEls.forEach((formEl) => {
     formEl.addEventListener("submit", (e) => {
@@ -62,9 +62,9 @@ function enableValidation(options) {
 
     setEventListeners(formEl, options);
   });
-}
+} */
 
-const config = {
+/*const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__form-input",
   submitButtonSelector: ".modal__button",
@@ -73,4 +73,4 @@ const config = {
   errorClass: "modal__error_visible",
 };
 
-enableValidation(config);
+enableValidation(config); */

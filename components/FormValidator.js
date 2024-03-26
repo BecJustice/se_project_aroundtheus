@@ -1,38 +1,38 @@
 export default class FormValidator {
   constructor(settings, formElement) {
     this._inputSelector = settings.inputSelector;
-    this.submitButtonSelector = settings.submitButtonSelector;
+    this._submitButtonSelector = settings.submitButtonSelector;
     this._inactiveButtonClass = settings.inactiveButtonClass;
-    this.inputErrorClass = settings.inputErrorClass;
-    this.errorClass = settings.errorClass;
+    this._inputErrorClass = settings.inputErrorClass;
+    this._errorClass = settings.errorClass;
 
     this._form = formElement;
   }
 
-  _showIputError(inputEl) {
+  _showInputError(inputEl) {
     this.errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
-    inputEl.classList.add(this.inputErrorClass);
+    inputEl.classList.add(this._inputErrorClass);
     this.errorMessageEl.textContent = inputEl.validationMessage;
     this.errorMessageEl.classList.add(this._errorClass);
   }
 
-  _hideIputError(inputEl) {
+  _hideInputError(inputEl) {
     this.errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
-    inputEl.classList.remove(this.inputErrorClass);
+    inputEl.classList.remove(this._inputErrorClass);
     this.errorMessageEl.textContent = inputEl.validationMessage;
-    this.errorMessageEl.classList.remove(this.errorClass);
+    this.errorMessageEl.classList.remove(this._errorClass);
   }
 
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
-      /*return?*/ this._showInputError(formEl, inputEl, options);
+      /*return?*/ this._showInputError(inputEl);
     } else {
       this._hideInputError(inputEl);
     }
   }
 
   _hasInvalidInput() {
-    return !this.inputList.every((inputEl) => inputEl.validity.valid);
+    return this._inputEls.every((inputEl) => !inputEl.validity.valid);
   }
 
   // enable button & disable button after submission
@@ -49,7 +49,7 @@ export default class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this.disableButton();
+      this._disableButton();
     } else {
       this._enableButton();
     }
@@ -74,12 +74,12 @@ export default class FormValidator {
     });
 
     this._setEventListeners();
-    // this._toggleButtonState();
+    //this._toggleButtonState();
   }
 }
 
-//const editFormValidator = new FormValidator();
-//editFormValidator.enableValidation();
+//const formValidator = new FormValidator();
+//formValidator.enableValidation();
 
 // create cards first
 /* GO IN STEPS validation, events listeners, events, etc. Look at js then index*/

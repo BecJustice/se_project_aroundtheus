@@ -108,7 +108,7 @@ function closeModalOutsideClick(evt) {
   }
 }
 
-function getCardElement(cardData) {
+/*function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
@@ -122,13 +122,13 @@ function getCardElement(cardData) {
     likeButton.classList.toggle("card__like-button_active");
   }); */
 
-  /*const cardRemoveButton = cardElement.querySelector("#card__remove-button");
+/*const cardRemoveButton = cardElement.querySelector("#card__remove-button");
   cardRemoveButton.addEventListener("click", () => {
     cardElement.remove();
   }); */
 
-  return cardElement;
-}
+//return cardElement;
+//}
 
 /*function handlePreviewPicture(data) {
   previewImage.src = data.link;
@@ -146,16 +146,20 @@ function handleProfileEditSubmit(e) {
   closePopup(profileEditModal);
 }
 
+function handleImageClick(cardData) {
+  openPopUp(previewImageModal);
+  previewImage.src = cardData.link;
+  previewImageTitle.textContent = cardData.name;
+  previewImage.setAttribute("alt", cardData.name);
+}
+
 function handleAddCardFormSubmit(e) {
   e.preventDefault();
   const cardTitleInput = addCardFormElement.querySelector("#name");
   const cardUrlInput = addCardFormElement.querySelector("#url");
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  const cardElement = getCardElement({
-    name,
-    link,
-  });
+  const cardElement = new Card({ name, link }, cardSelector, handleImageClick);
   cardListEl.prepend(cardElement);
   addCardFormElement.reset();
   closePopup(addCardModal);
@@ -188,14 +192,11 @@ previewImageCloseButton.addEventListener("click", () => {
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
+// create card
+
 initialCards.forEach((cardData) => {
   const card = new Card(cardData, "#card-template", handleImageClick);
   cardListEl.append(card.getView());
 });
 
-function handleImageClick(cardData) {
-  openPopUp(previewImageModal);
-  previewImage.src = cardData.link;
-  previewImageTitle.textContent = cardData.name;
-  previewImage.setAttribute("alt", cardData.name);
-}
+/* need to move logic from handlecardformsubmit to creating a new const CreateCard */
