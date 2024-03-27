@@ -46,9 +46,9 @@ const config = {
   inputErrorClass: "modal__form-input_error",
   errorClass: "modal__error_visible",
 };
-//new
+
 const forms = document.querySelectorAll(config.formSelector);
-//new
+
 forms.forEach((form) => {
   const formValidator = new FormValidator(config, form);
   formValidator.enableValidation();
@@ -68,7 +68,6 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-//const cardTemplate = document.querySelector("#card-template");
 const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#profile-add-modal");
 const addCardModalCloseButton = addCardModal.querySelector(
@@ -108,35 +107,6 @@ function closeModalOutsideClick(evt) {
     closePopup(evt.currentTarget);
   }
 }
-
-/*function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  //const likeButton = cardElement.querySelector(".card__like-button");
-  cardTitleEl.textContent = cardData.name;
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  //cardImageEl.addEventListener("click", () => handlePreviewPicture(cardData));
-
-  /*likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  }); */
-
-/*const cardRemoveButton = cardElement.querySelector("#card__remove-button");
-  cardRemoveButton.addEventListener("click", () => {
-    cardElement.remove();
-  }); */
-
-//return cardElement;
-//}
-
-/*function handlePreviewPicture(data) {
-  previewImage.src = data.link;
-  previewImageTitle.textContent = data.name;
-  previewImage.setAttribute("alt", data.name);
-  openPopUp(previewImageModal);
-} */
 
 /*Event Handlers*/
 
@@ -203,5 +173,3 @@ initialCards.forEach((cardData) => {
   const card = new Card(cardData, "#card-template", handleImageClick);
   cardListEl.append(card.getView());
 });
-
-/* need to move logic from handlecardformsubmit to creating a new const CreateCard */

@@ -25,7 +25,7 @@ export default class FormValidator {
 
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
-      /*return?*/ this._showInputError(inputEl);
+      this._showInputError(inputEl);
     } else {
       this._hideInputError(inputEl);
     }
@@ -53,7 +53,7 @@ export default class FormValidator {
     } else {
       this._enableButton();
     }
-  } //look at this again
+  }
 
   _setEventListeners() {
     this._inputEls = Array.from(
@@ -74,12 +74,5 @@ export default class FormValidator {
     });
 
     this._setEventListeners();
-    //this._toggleButtonState();
   }
 }
-
-//const formValidator = new FormValidator();
-//formValidator.enableValidation();
-
-// create cards first
-/* GO IN STEPS validation, events listeners, events, etc. Look at js then index*/

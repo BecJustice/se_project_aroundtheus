@@ -37,7 +37,6 @@ export default class Card {
       .classList.toggle("card__like-button_active");
   }
 
-  /* gen card*/
   getView() {
     this._cardElement = document
       .querySelector(this._cardSelector)
