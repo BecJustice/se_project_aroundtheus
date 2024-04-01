@@ -1,5 +1,5 @@
 import FormValidator from "../components/FormValidator.js";
-import Card from "../components/card.js";
+import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -34,9 +34,6 @@ const cardData = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
-
-const card = new Card(cardData, "#card-template");
-card.getView();
 
 const config = {
   formSelector: ".modal__form",
@@ -130,12 +127,7 @@ function handleAddCardFormSubmit(e) {
   const cardUrlInput = addCardFormElement.querySelector("#url");
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  const cardElement = new Card(
-    { name, link },
-    "#card-template",
-    handleImageClick
-  );
-  cardListEl.prepend(cardElement.getView());
+  renderCard({ name, link });
   addCardFormElement.reset();
   closePopup(addCardModal);
 }
@@ -169,7 +161,17 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 // create card
 
+function createCard(cardData) {
+  const cardElement = new Card(cardData, "#card-template", handleImageClick);
+  return cardElement.getView();
+}
+
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  cardListEl.append(card.getView());
+  const card = createCard(cardData);
+  cardListEl.append(card);
 });
+
+function renderCard(cardData) {
+  const card = createCard(cardData);
+  cardListEl.prepend(card);
+}
