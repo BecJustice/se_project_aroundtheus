@@ -1,5 +1,6 @@
-import FormValidator from "../components/FormValidator.js";
-import Card from "../components/Card.js";
+import FormValidator from "../../components/FormValidator.js";
+import Card from "../../components/Card.js";
+import Section from "../components/Section.js";
 
 const initialCards = [
   {
@@ -27,8 +28,6 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-
-/*elements*/
 
 const cardData = {
   name: "Yosemite Valley",
@@ -175,3 +174,16 @@ function renderCard(cardData) {
   const card = createCard(cardData);
   cardListEl.prepend(card);
 }
+
+//section instances
+
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardElement = createCard(cardData);
+      cardSection.addItem(cardElement);
+    },
+  },
+  ".cards__list"
+);
