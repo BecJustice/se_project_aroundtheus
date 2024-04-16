@@ -82,8 +82,9 @@ const userInfo = new UserInfo({
   profileDescription.textContent = profileDescriptionInput.value;
 } */
 
-function handleProfileEditSubmit({ name, description }) {
-  userInfo.setUserInfo({ name, description });
+function handleProfileEditSubmit() {
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
   profilePopup.close();
 }
 
