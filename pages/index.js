@@ -99,9 +99,6 @@ addNewCardButton.addEventListener("click", () => {
   cardPopup.open();
 });
 
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
-
 // create card
 
 function createCard(cardData) {

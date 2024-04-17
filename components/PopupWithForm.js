@@ -29,10 +29,3 @@ export default class PopupWithForm extends Popup {
     super.close();
   }
 }
-
-/* instantiate new popups in index
-const profilePopup = new PopupWithForm("#profile-edit-modal", handleProfileEditSubmit);
-profilePopup.setEventListeners();
-
-const cardPopup = new PopupWithForm("#profile-add-modal", handleAddCardFormSubmit);
-cardPopup.setEventListeners(); */
