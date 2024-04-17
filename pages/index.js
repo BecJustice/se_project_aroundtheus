@@ -63,12 +63,7 @@ const userInfo = new UserInfo({
   jobSelector: ".profile__description",
 });
 
-/*Event Handlers*/
-
-/*function handleProfileEditSubmit({ name, description }) {
-  userInfo.setUserInfo({ name, description });
-  profilePopup.close(); 
-} */
+/*Functions*/
 
 function handleProfileEditSubmit() {
   profileTitle.textContent = profileTitleInput.value;
@@ -92,6 +87,9 @@ function handleAddCardFormSubmit(e) {
 /*Event Listeners*/
 
 profileEditBtn.addEventListener("click", () => {
+  const currentUserInfo = userInfo.getUserInfo();
+  profileTitle.value = currentUserInfo.name;
+  profileDescription.value = currentUserInfo.description;
   profilePopup.open();
 });
 
