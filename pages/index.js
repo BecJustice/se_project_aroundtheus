@@ -29,8 +29,6 @@ forms.forEach((form) => {
 
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileAddModal = document.querySelector("#profile-add-modal");
-const profileModalCloseBtn = document.querySelector("#modal-close-button");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -43,16 +41,7 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#profile-add-modal");
-const addCardModalCloseButton = addCardModal.querySelector(
-  "#add-modal-close-button"
-);
 const addCardFormElement = addCardModal.querySelector(".modal__form");
-const cardTitleInput = document.querySelector("#modal-add-card-input");
-const cardUrlInput = document.querySelector("#modal-form-url-input");
-const previewImageModal = document.querySelector("#preview__image-modal");
-const previewImageTitle = document.querySelector(".modal__image-title");
-const previewImageCloseButton = document.querySelector("#image-close-modal");
-const previewImage = document.querySelector("#modal-image");
 
 const profilePopup = new PopupWithForm(
   "#profile-edit-modal",
@@ -76,10 +65,9 @@ const userInfo = new UserInfo({
 
 /*Event Handlers*/
 
-/*function handleProfileEditSubmit(e) {
-  e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+/*function handleProfileEditSubmit({ name, description }) {
+  userInfo.setUserInfo({ name, description });
+  profilePopup.close(); 
 } */
 
 function handleProfileEditSubmit() {
@@ -90,13 +78,9 @@ function handleProfileEditSubmit() {
 
 function handleImageClick(cardData) {
   popupWithImage.open(cardData);
-  previewImage.src = cardData.link;
-  previewImageTitle.textContent = cardData.name;
-  previewImage.setAttribute("alt", cardData.name);
 }
 
 function handleAddCardFormSubmit(e) {
-  e.preventDefault();
   const cardTitleInput = addCardFormElement.querySelector("#name");
   const cardUrlInput = addCardFormElement.querySelector("#url");
   const name = cardTitleInput.value;

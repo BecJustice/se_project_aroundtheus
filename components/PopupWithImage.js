@@ -7,7 +7,10 @@ export default class PopupWithImage extends Popup {
     this._image = this._popupElement.querySelector(".modal__image");
   }
 
-  open() {
+  open({ name, link }) {
+    this._description.textContent = name;
+    this._image.src = link;
+    this._image.alt = name;
     super.open();
   }
 }
