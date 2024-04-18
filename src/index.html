@@ -7,13 +7,12 @@
     <meta name="keywords" content="around the us" />
     <meta name="description" content="scenic views of the us, explore" />
     <meta name="author" content="Rebecca Bindraban" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/Around-light.svg"
+          src="<%= require('./images/Around-light.svg')%>"
           alt="around the world logo"
           class="header__logo"
         />
@@ -21,7 +20,7 @@
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/jacques-cousteau.jpg"
+            src="<%= require('./images/jacques-cousteau.jpg')%>"
             alt="avatar"
             class="profile__image"
           />
@@ -161,7 +160,5 @@
         </div>
       </li>
     </template>
-
-    <script src="./pages/index.js" type="module" defer></script>
   </body>
 </html>
