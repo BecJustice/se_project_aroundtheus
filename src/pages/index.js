@@ -66,9 +66,8 @@ const userInfo = new UserInfo({
 
 /*Functions*/
 
-function handleProfileEditSubmit() {
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+function handleProfileEditSubmit({ name, description }) {
+  userInfo.setUserInfo({ name, description });
   profilePopup.close();
 }
 
@@ -82,15 +81,14 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link });
-  addCardFormElement.reset();
 }
 
 /*Event Listeners*/
 
 profileEditBtn.addEventListener("click", () => {
   const currentUserInfo = userInfo.getUserInfo();
-  profileTitle.value = currentUserInfo.name;
-  profileDescription.value = currentUserInfo.description;
+  profileTitleInput.value = currentUserInfo.name;
+  profileDescriptionInput.value = currentUserInfo.description;
   profilePopup.open();
 });
 
@@ -105,14 +103,9 @@ function createCard(cardData) {
   return cardElement.getView();
 }
 
-initialCards.forEach((cardData) => {
-  const card = createCard(cardData);
-  cardListEl.append(card);
-});
-
 function renderCard(cardData) {
   const card = createCard(cardData);
-  cardListEl.prepend(card);
+  cardSection.addItem(card);
 }
 
 //section instances
@@ -127,3 +120,5 @@ const cardSection = new Section(
   },
   ".cards__list"
 );
+
+cardSection.renderItems();

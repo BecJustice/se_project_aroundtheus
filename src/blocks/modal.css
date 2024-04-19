@@ -91,7 +91,7 @@
   padding: 0;
 }
 
-.modal__form-input:invalid {
+.modal__form-input_error {
   border: none;
   border-bottom: 1px solid red;
   margin: 0;
@@ -118,6 +118,10 @@
   opacity: 80%;
 }
 
+.modal__button_disabled:hover {
+  opacity: 0.2;
+}
+
 .modal__button_disabled {
   background-color: rgba(255, 255, 255, 1);
   border: 1px;
@@ -125,6 +129,7 @@
   border-color: rgba(0, 0, 0, 1);
   color: rgba(0, 0, 0, 1);
   opacity: 20%;
+  cursor: default;
 }
 
 .modal__error_visible {
