@@ -6,6 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards } from "../utils/constants.js";
 import "./index.css";
+import Api from "../components/Api.js";
 
 const cardData = {
   name: "Yosemite Valley",
@@ -64,23 +65,76 @@ const userInfo = new UserInfo({
   jobSelector: ".profile__description",
 });
 
+//Api
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "8fb04c52-2fa8-4c47-a8b4-76fb0eacbed1",
+    "Content-Type": "application/json",
+  },
+});
+//userinfome
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo(data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 /*Functions*/
 
-function handleProfileEditSubmit({ name, description }) {
+/*function handleProfileEditSubmit({ name, description }) {
   userInfo.setUserInfo({ name, description });
   profilePopup.close();
+} */
+
+function handleProfileEditSubmit({ name, description }) {
+  profilePopup.setLoading(true);
+  api
+    .updateProfileInfo(name, description)
+    .then(() => {
+      userInfo.setUserInfo({ name, description });
+      profilePopup.close();
+      //profilePopup.reset();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      profilePopup.setLoading(false);
+    });
 }
 
 function handleImageClick(cardData) {
   popupWithImage.open(cardData);
 }
 
-function handleAddCardFormSubmit(e) {
+/*function handleAddCardFormSubmit(e) {
   const cardTitleInput = addCardFormElement.querySelector("#name");
   const cardUrlInput = addCardFormElement.querySelector("#url");
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link });
+} */
+
+function handleAddCardFormSubmit({ name, link }) {
+  cardPopup.setLoading(true);
+  api
+    .createNewCard({ name, link })
+    .then((data) => {
+      const cardElement = createCard(data);
+      cardSection.addItem(cardElement);
+      cardPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      cardPopup.setLoading(false);
+    });
 }
 
 /*Event Listeners*/
@@ -99,14 +153,14 @@ addNewCardButton.addEventListener("click", () => {
 // create card
 
 function createCard(cardData) {
-  const cardElement = new Card(cardData, "#card-template", handleImageClick);
+  const cardElement = new Card(cardData, "#card-template", handleImageClick); //will be adding dekerte, like, disliek etc funcs
   return cardElement.getView();
 }
 
-function renderCard(cardData) {
+/*function renderCard(cardData) {
   const card = createCard(cardData);
   cardSection.addItem(card);
-}
+} */
 
 //section instances
 
@@ -120,5 +174,18 @@ const cardSection = new Section(
   },
   ".cards__list"
 );
+
+//renderinitialcards
+api
+  .getInitialCards()
+  .then((cards) => {
+    console.log(cards);
+    cards.forEach((card) => {
+      cardSection.addItem(createCard(card));
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 cardSection.renderItems();
