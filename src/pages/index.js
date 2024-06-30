@@ -114,15 +114,15 @@ function handleImageClick(cardData) {
 }
 
 //deletecard
-function handleDeleteButton(cardData) {
+function handleDeleteButton(card) {
   deletePopup.open();
   deletePopup.setSubmit(() => {
-    console.log(cardData);
+    console.log(card);
     api
-      .deleteCard(cardData._id)
+      .deleteCard(card._id)
       .then(() => {
         console.log("Card deleted successfully");
-        cardData.removeCard();
+        card.removeCard();
         deletePopup.close();
       })
       .catch((error) => {
