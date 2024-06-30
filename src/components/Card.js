@@ -1,9 +1,15 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
-    this._name = name;
-    this._link = link;
+  constructor(data, cardSelector, handleImageClick, handleDeleteCard) {
+    this._name = data.name;
+    this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteCard = handleDeleteCard;
+    this._id = data._id;
+    this._cardElement = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
   }
 
   _setEventListeners() {
@@ -26,10 +32,14 @@ export default class Card {
       });
   }
 
-  _handleDeleteCard() {
+  removeCard() {
+    this._cardElement.remove();
+  }
+
+  /* _handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
-  }
+  } */
 
   _handleLikeIcon() {
     this._cardElement

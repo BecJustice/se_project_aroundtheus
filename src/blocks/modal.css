@@ -168,6 +168,10 @@
   }
 }
 
+.modal__form_delete {
+  margin-top: 0;
+}
+
 @media screen and (max-width: 400px) {
   .modal__container {
     box-sizing: border-box;

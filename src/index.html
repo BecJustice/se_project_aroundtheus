@@ -25,14 +25,14 @@
             class="profile__image"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title"></h1>
             <button
               aria-label="edit"
               type="button"
               class="profile__edit-button"
               id="profile-edit-button"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button
             aria-label="add"
@@ -106,7 +106,7 @@
           <input
             class="modal__form-input"
             type="text"
-            name="title"
+            name="name"
             id="name"
             placeholder="Title"
             minlength="2"
@@ -117,7 +117,7 @@
           <input
             class="modal__form-input"
             type="url"
-            name="url"
+            name="link"
             id="url"
             placeholder="Image URL"
             required
@@ -145,7 +145,21 @@
         <h2 class="modal__image-title"></h2>
       </div>
     </div>
-
+    <!--Delete Image Modal-->
+    <div class="modal" id="delete-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="delete-card-modal"
+          type="button"
+        ></button>
+        <form class="modal__form modal__form_delete">
+          <h2 class="modal__heading">Are you sure?</h2>
+          <button class="modal__button" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+    <!--Template-->
     <template id="card-template">
       <li class="card">
         <button

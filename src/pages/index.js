@@ -45,6 +45,9 @@ const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector("#profile-add-modal");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 
+const deletePopup = new PopupWithForm("#delete-modal");
+deletePopup.setEventListeners();
+
 const profilePopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
@@ -78,6 +81,7 @@ const api = new Api({
 api
   .getUserInfo()
   .then((data) => {
+    console.log(data); ///take this out this was to make sure right thing was being called
     userInfo.setUserInfo(data);
   })
   .catch((err) => {
@@ -86,17 +90,14 @@ api
 
 /*Functions*/
 
-/*function handleProfileEditSubmit({ name, description }) {
-  userInfo.setUserInfo({ name, description });
-  profilePopup.close();
-} */
-
+//edit profile
 function handleProfileEditSubmit({ name, description }) {
   profilePopup.setLoading(true);
   api
     .updateProfileInfo(name, description)
-    .then(() => {
-      userInfo.setUserInfo({ name, description });
+    .then((userData) => {
+      console.log(userData); //take out, was to make sure right thing was called
+      userInfo.setUserInfo(userData);
       profilePopup.close();
       //profilePopup.reset();
     })
@@ -112,13 +113,23 @@ function handleImageClick(cardData) {
   popupWithImage.open(cardData);
 }
 
-/*function handleAddCardFormSubmit(e) {
-  const cardTitleInput = addCardFormElement.querySelector("#name");
-  const cardUrlInput = addCardFormElement.querySelector("#url");
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  renderCard({ name, link });
-} */
+//deletecard
+function handleDeleteButton(cardData) {
+  deletePopup.open();
+  deletePopup.setSubmit(() => {
+    console.log(cardData);
+    api
+      .deleteCard(cardData._id)
+      .then(() => {
+        console.log("Card deleted successfully");
+        cardData.removeCard();
+        deletePopup.close();
+      })
+      .catch((error) => {
+        console.error("Error deleting card:", error);
+      });
+  });
+}
 
 function handleAddCardFormSubmit({ name, link }) {
   cardPopup.setLoading(true);
@@ -153,7 +164,12 @@ addNewCardButton.addEventListener("click", () => {
 // create card
 
 function createCard(cardData) {
-  const cardElement = new Card(cardData, "#card-template", handleImageClick); //will be adding dekerte, like, disliek etc funcs
+  const cardElement = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleDeleteButton
+  ); //will be adding dekerte, like, disliek etc funcs
   return cardElement.getView();
 }
 
@@ -166,7 +182,6 @@ function createCard(cardData) {
 
 const cardSection = new Section(
   {
-    items: initialCards,
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
       cardSection.addItem(cardElement);
@@ -180,12 +195,8 @@ api
   .getInitialCards()
   .then((cards) => {
     console.log(cards);
-    cards.forEach((card) => {
-      cardSection.addItem(createCard(card));
-    });
+    cardSection.renderItems(cards);
   })
   .catch((err) => {
     console.error(err);
   });
-
-cardSection.renderItems();
