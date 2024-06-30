@@ -148,6 +148,10 @@ function handleAddCardFormSubmit({ name, link }) {
     });
 }
 
+//handle likes
+
+//function handleLikeButton
+
 /*Event Listeners*/
 
 profileEditBtn.addEventListener("click", () => {
