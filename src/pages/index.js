@@ -28,23 +28,15 @@ forms.forEach((form) => {
   const formValidator = new FormValidator(config, form);
   formValidator.enableValidation();
 });
-
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileEditForm = profileEditModal.querySelector(".modal__form");
-const cardListEl = document.querySelector(".cards__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
 const addNewCardButton = document.querySelector(".profile__add-button");
-const addCardModal = document.querySelector("#profile-add-modal");
-const addCardFormElement = addCardModal.querySelector(".modal__form");
 
+//
 const deletePopup = new PopupWithForm("#delete-modal");
 deletePopup.setEventListeners();
 
@@ -113,6 +105,24 @@ function handleImageClick(cardData) {
   popupWithImage.open(cardData);
 }
 
+//add card
+function handleAddCardFormSubmit({ name, link }) {
+  cardPopup.setLoading(true);
+  api
+    .createNewCard({ name, link })
+    .then((data) => {
+      const cardElement = createCard(data);
+      cardSection.addItem(cardElement);
+      cardPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      cardPopup.setLoading(false);
+    });
+}
+
 //deletecard
 function handleDeleteButton(card) {
   deletePopup.open();
@@ -131,26 +141,33 @@ function handleDeleteButton(card) {
   });
 }
 
-function handleAddCardFormSubmit({ name, link }) {
-  cardPopup.setLoading(true);
+//handle likes, like a card
+
+const handleLikeButton = (cardData) => {
+  console.log(cardData.getLikeStatus());
+};
+
+function handleCardLike(card) {
   api
-    .createNewCard({ name, link })
-    .then((data) => {
-      const cardElement = createCard(data);
-      cardSection.addItem(cardElement);
-      cardPopup.close();
+    .likeCard(card.getCardId())
+    .then(() => {
+      card.like();
     })
     .catch((err) => {
       console.error(err);
-    })
-    .finally(() => {
-      cardPopup.setLoading(false);
     });
 }
 
-//handle likes
-
-//function handleLikeButton
+function handleCardDislike(card) {
+  api
+    .dislikeCard(card.getCardId())
+    .then(() => {
+      card.dislike();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 
 /*Event Listeners*/
 
@@ -172,17 +189,13 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    handleDeleteButton
-  ); //will be adding dekerte, like, disliek etc funcs
+    handleDeleteButton,
+    handleLikeButton,
+    handleCardLike,
+    handleCardDislike
+  );
   return cardElement.getView();
 }
-
-/*function renderCard(cardData) {
-  const card = createCard(cardData);
-  cardSection.addItem(card);
-} */
-
-//section instances
 
 const cardSection = new Section(
   {
