@@ -11,9 +11,6 @@ export default class Api {
     return Promise.reject(`Error ${res.status}`);
   }
 
-  //i mty just need to comletelet rewrite code for functinos in index.js handleprofileform submit, handleaddcardform, handlescardlike and dislikes, handledelete, everything i made for Api connects
-  //also need to add new html elements
-
   getInitialCards() {
     return fetch(this.baseUrl + "/cards", {
       headers: this.header,
@@ -74,14 +71,14 @@ export default class Api {
       headers: this.header,
     }).then(this._checkResponse);
   }
-  //rememebrname
+
   likeCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this.header,
     }).then(this._checkResponse);
   }
-  //me
+
   dislikeCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",

@@ -19,11 +19,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%= require('./images/jacques-cousteau.jpg')%>"
-            alt="avatar"
-            class="profile__image"
-          />
+          <div class="profile__image-container">
+            <img
+              src="<%= require('./images/jacques-cousteau.jpg')%>"
+              alt="avatar"
+              class="profile__image"
+            />
+            <div class="profile__image-overlay" type="button"></div>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title"></h1>
             <button
@@ -159,6 +162,25 @@
         </form>
       </div>
     </div>
+    <!--Edit avatar-->
+    <div class="modal" id="edit-avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+        <form class="modal__form" id="edit-avatar-form" name="edit-avatar-form">
+          <input
+            type="text"
+            id="avatar-url"
+            class="modal__form-input"
+            name="avatar"
+            required
+          />
+          <span class="modal__error" id="avatar-url-error"></span>
+          <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
     <!--Template-->
     <template id="card-template">
       <li class="card">

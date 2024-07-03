@@ -17,6 +17,7 @@ export default class Card {
     this._handleLikeButton = _handleLikeButton;
     this.handleLike = handleCardLike;
     this.handleDislike = handleCardDislike;
+    this._isLiked = data.isLiked;
 
     this._cardElement = document
       .querySelector(this._cardSelector)

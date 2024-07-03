@@ -29,12 +29,14 @@ forms.forEach((form) => {
   formValidator.enableValidation();
 });
 const profileEditBtn = document.querySelector("#profile-edit-button");
-const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 const addNewCardButton = document.querySelector(".profile__add-button");
+const profileAvatarContainer = document.querySelector(
+  ".profile__image-overlay"
+);
 
 //
 const deletePopup = new PopupWithForm("#delete-modal");
@@ -58,6 +60,7 @@ popupWithImage.setEventListeners();
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
+  avatarSelector: ".profile__image",
 });
 
 //Api
@@ -73,7 +76,7 @@ const api = new Api({
 api
   .getUserInfo()
   .then((data) => {
-    console.log(data); ///take this out this was to make sure right thing was being called
+    console.log(data);
     userInfo.setUserInfo(data);
   })
   .catch((err) => {
@@ -82,16 +85,40 @@ api
 
 /*Functions*/
 
+const handleAvatarSubmit = ({ avatar }) => {
+  console.log(avatar);
+  editAvatarPopup.setLoading(true);
+  api
+    .updateAvatar(avatar)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+      formValidators["edit-avatar-form"].disableButton();
+      formValidators["edit-avatar-form"].toggleButtonState();
+      editAvatarPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      editAvatarPopup.setLoading(false);
+    });
+};
+
+const editAvatarPopup = new PopupWithForm(
+  "#edit-avatar-modal",
+  handleAvatarSubmit
+);
+editAvatarPopup.setEventListeners();
+
 //edit profile
 function handleProfileEditSubmit({ name, description }) {
   profilePopup.setLoading(true);
   api
     .updateProfileInfo(name, description)
     .then((userData) => {
-      console.log(userData); //take out, was to make sure right thing was called
+      console.log(userData);
       userInfo.setUserInfo(userData);
       profilePopup.close();
-      //profilePopup.reset();
     })
     .catch((err) => {
       console.error(err);
@@ -180,6 +207,10 @@ profileEditBtn.addEventListener("click", () => {
 
 addNewCardButton.addEventListener("click", () => {
   cardPopup.open();
+});
+
+profileAvatarContainer.addEventListener("click", () => {
+  editAvatarPopup.open();
 });
 
 // create card

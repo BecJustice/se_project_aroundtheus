@@ -142,6 +142,54 @@
   opacity: 1;
 }
 
+.profile__image-overlay {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 50px;
+  left: 48px;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+  width: 120px;
+  height: 120px;
+  top: 40px;
+  left: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.profile__image-container:hover .profile__image-overlay {
+  background: url(../images/edit-Vector.svg) center no-repeat;
+  visibility: visible;
+  background-color: black;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+#delete-modal .modal__container {
+  min-width: 430px;
+  margin-top: 270px;
+  padding: 0px 36px 36px 36px;
+  height: 181px;
+}
+
+#delete-modal .modal__button {
+  width: 100%;
+  min-height: 46px;
+  padding: 0;
+  margin: 0;
+}
+
+#edit-avatar-modal .modal__container {
+  width: 430px;
+  height: 272px;
+  border: 1px #000;
+}
+
 @media screen and (max-width: 635px) {
   .modal__container {
     height: 322px;
@@ -166,10 +214,10 @@
     top: -45px;
     right: 0;
   }
-}
-
-.modal__form_delete {
-  margin-top: 0;
+  #edit-avatar-modal .modal__container {
+    height: 322px;
+    width: 282px;
+  }
 }
 
 @media screen and (max-width: 400px) {
