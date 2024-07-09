@@ -14,21 +14,13 @@ export default class Api {
   getInitialCards() {
     return fetch(this.baseUrl + "/cards", {
       headers: this.header,
-    })
-      .then(this._checkResponse)
-      .then((result) => {
-        return result;
-      });
+    }).then(this._checkResponse);
   }
 
   getUserInfo() {
     return fetch(this.baseUrl + "/users/me", {
       headers: this.header,
-    })
-      .then(this._checkResponse)
-      .then((userData) => {
-        return userData;
-      });
+    }).then(this._checkResponse);
   }
 
   updateProfileInfo(name, about) {
@@ -39,11 +31,7 @@ export default class Api {
         name: name,
         about: about,
       }),
-    })
-      .then(this._checkResponse)
-      .then((result) => {
-        return result;
-      });
+    }).then(this._checkResponse);
   }
 
   updateAvatar(newAvatarUrl) {

@@ -19,10 +19,10 @@ export default class Card {
     this.handleDislike = handleCardDislike;
     this._isLiked = data.isLiked;
 
-    this._cardElement = document
+    /* this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
-      .cloneNode(true);
+      .cloneNode(true); */
   }
   getCardId() {
     return this._id;
@@ -32,14 +32,14 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .classList.add("card__like-button_active");
-    this._isLiked = !this._isLiked;
+    this._isLiked = true;
   }
 
   dislike() {
     this._cardElement
       .querySelector(".card__like-button")
       .classList.remove("card__like-button_active");
-    this._isLiked = !this._isLiked;
+    this._isLiked = false;
   }
 
   _setEventListeners() {

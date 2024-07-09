@@ -154,6 +154,7 @@ function handleAddCardFormSubmit({ name, link }) {
 function handleDeleteButton(card) {
   deletePopup.open();
   deletePopup.setSubmit(() => {
+    deletePopup.setLoading(true);
     console.log(card);
     api
       .deleteCard(card._id)
