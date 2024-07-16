@@ -78,3 +78,6 @@ export default class FormValidator {
     this.toggleButtonState();
   }
 }
+
+//should be a reset validation method in here
+//  access method as so index.js-call when editporfilemodal formValidators['edit-profile-form'].resetValidation();

@@ -7,6 +7,7 @@ import UserInfo from "../components/UserInfo.js";
 import { initialCards } from "../utils/constants.js";
 import "./index.css";
 import Api from "../components/Api.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 
 const cardData = {
   name: "Yosemite Valley",
@@ -24,8 +25,12 @@ const config = {
 
 const forms = document.querySelectorAll(config.formSelector);
 
+const formValidators = {};
+//attach ids to forms "profile-edit-form":formValidator
+
 forms.forEach((form) => {
   const formValidator = new FormValidator(config, form);
+  formValidators[form.id] = formValidator;
   formValidator.enableValidation();
 });
 const profileEditBtn = document.querySelector("#profile-edit-button");
@@ -39,7 +44,7 @@ const profileAvatarContainer = document.querySelector(
 );
 
 //
-const deletePopup = new PopupWithForm("#delete-modal");
+const deletePopup = new PopupWithConfirmation("#delete-modal");
 deletePopup.setEventListeners();
 
 const profilePopup = new PopupWithForm(
@@ -78,6 +83,7 @@ api
   .then((data) => {
     console.log(data);
     userInfo.setUserInfo(data);
+    userInfo.setAvatar(data.avatar);
   })
   .catch((err) => {
     console.error(err);
@@ -91,7 +97,7 @@ const handleAvatarSubmit = ({ avatar }) => {
   api
     .updateAvatar(avatar)
     .then((data) => {
-      userInfo.setUserInfo(data);
+      userInfo.setAvatar(data.avatar);
       formValidators["edit-avatar-form"].disableButton();
       formValidators["edit-avatar-form"].toggleButtonState();
       editAvatarPopup.close();
@@ -179,7 +185,7 @@ function handleCardLike(card) {
   api
     .likeCard(card.getCardId())
     .then(() => {
-      card.like();
+      card.handleLikeIcon();
     })
     .catch((err) => {
       console.error(err);
@@ -190,7 +196,7 @@ function handleCardDislike(card) {
   api
     .dislikeCard(card.getCardId())
     .then(() => {
-      card.dislike();
+      card.handleLikeIcon();
     })
     .catch((err) => {
       console.error(err);
