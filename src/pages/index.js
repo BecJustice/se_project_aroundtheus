@@ -181,15 +181,11 @@ function handleDeleteButton(card) {
 
 //handle likes, like a card
 
-/*const handleLikeButton = (cardData) => {
-  console.log(cardData.getLikeStatus());
-}; */
-
 function handleCardLike(card) {
   api
     .likeCard(card.getCardId())
     .then(() => {
-      card.handleLikeIcon();
+      card.updateLike(true);
     })
     .catch((err) => {
       console.error(err);
@@ -200,7 +196,7 @@ function handleCardDislike(card) {
   api
     .dislikeCard(card.getCardId())
     .then(() => {
-      card.handleLikeIcon();
+      card.updateLike(false);
     })
     .catch((err) => {
       console.error(err);
@@ -232,7 +228,6 @@ function createCard(cardData) {
     "#card-template",
     handleImageClick,
     handleDeleteButton,
-    //handleLikeButton,
     handleCardLike,
     handleCardDislike
   );
