@@ -167,19 +167,23 @@ function handleDeleteButton(card) {
       .then(() => {
         console.log("Card deleted successfully");
         card.removeCard();
+        formValidators["delete-modal-form"].toggleButtonState();
         deletePopup.close();
       })
       .catch((error) => {
         console.error("Error deleting card:", error);
+      })
+      .finally(() => {
+        deletePopup.setLoading(false);
       });
   });
 }
 
 //handle likes, like a card
 
-const handleLikeButton = (cardData) => {
+/*const handleLikeButton = (cardData) => {
   console.log(cardData.getLikeStatus());
-};
+}; */
 
 function handleCardLike(card) {
   api
@@ -228,7 +232,7 @@ function createCard(cardData) {
     "#card-template",
     handleImageClick,
     handleDeleteButton,
-    handleLikeButton,
+    //handleLikeButton,
     handleCardLike,
     handleCardDislike
   );

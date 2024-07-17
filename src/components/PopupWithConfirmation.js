@@ -13,9 +13,9 @@ export default class PopupWithForm extends Popup {
 
   setLoading(isLoading) {
     if (isLoading) {
-      this._modalButton.textContent = "Saving...";
+      this._modalButton.textContent = "Deleting...";
     } else {
-      this._modalButton.textContent = "Save";
+      this._modalButton.textContent = "Yes";
     }
   }
 
