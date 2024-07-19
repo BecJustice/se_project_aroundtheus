@@ -29,14 +29,13 @@ export default class Card {
         this._handleDeleteCard(this);
       });
     //
-    /*this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      }); */
 
     this._likeButton.addEventListener("click", () => {
-      this.updateLike();
+      if (this._isLiked) {
+        this.handleDislike(this);
+      } else {
+        this.handleLike(this);
+      }
     });
 
     this._cardElement
