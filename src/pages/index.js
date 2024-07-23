@@ -138,6 +138,7 @@ function handleAddCardFormSubmit({ name, link }) {
       const cardElement = createCard(data);
       cardSection.addItem(cardElement);
       cardPopup.close();
+      formValidators["add-card-modal"].toggleButtonState();
     })
     .catch((err) => {
       console.error(err);
