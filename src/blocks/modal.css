@@ -68,11 +68,13 @@
 
 .modal__heading {
   color: black;
-  width: 330px;
+  /*width: 330px; */
   height: 23px;
   font-size: 24px;
   font-weight: 900;
-  margin: 34px 64px 54px 0px;
+  margin: 0;
+  margin-bottom: 54px;
+  /* margin: 34px 64px 54px 0px; */
 }
 
 .modal__form {
@@ -108,7 +110,7 @@
   background-color: #000;
   color: #fff;
   margin-top: 48px;
-  margin-bottom: 36px;
+  /*margin-bottom: 36px;*/
   border: none;
   padding: 0;
   cursor: pointer;
@@ -190,10 +192,20 @@
   border: 1px #000;
 }
 
+#edit-avatar-modal .modal__form-input {
+  padding: 10px;
+}
+
 @media screen and (max-width: 635px) {
   .modal__container {
-    height: 322px;
-    width: 282px;
+    /*height: 322px;
+    width: 282px;*/
+    padding: 25px 22px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+    max-width: 282px;
+    width: 100%;
   }
   .modal__form-input {
     height: 27px;

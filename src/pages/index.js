@@ -89,9 +89,8 @@ const handleAvatarSubmit = ({ avatar }) => {
     .updateAvatar(avatar)
     .then((data) => {
       userInfo.setAvatar(data.avatar);
-      formValidators["edit-avatar-form"].disableButton();
-      formValidators["edit-avatar-form"].toggleButtonState();
       editAvatarPopup.close();
+      formValidators["edit-avatar-form"].toggleButtonState();
     })
     .catch((err) => {
       console.error(err);
