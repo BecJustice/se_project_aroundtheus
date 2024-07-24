@@ -71,10 +71,12 @@ export default class FormValidator {
   enableValidation() {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
-      this.disableButton();
     });
 
     this._setEventListeners();
     this.toggleButtonState();
   }
 }
+
+//should be a reset validation method in here
+//  access method as so index.js-call when editporfilemodal formValidators['edit-profile-form'].resetValidation();
